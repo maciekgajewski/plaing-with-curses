@@ -12,6 +12,7 @@ int main(int, char **) {
   init_pair(1, COLOR_RED, COLOR_BLACK);
   init_pair(2, COLOR_GREEN, COLOR_BLACK);
   attron(COLOR_PAIR(2));
+  int currentPair = 2;
 
   int row = 5;
   int col = 10;
@@ -29,14 +30,19 @@ int main(int, char **) {
       row--;
     else if (i == KEY_DOWN)
       row++;
-    else if (i == 'g')
+    else if (i == 'g') {
       attron(COLOR_PAIR(2));
-    else if (i == 'r')
+      currentPair = 2;
+    } else if (i == 'r') {
       attron(COLOR_PAIR(1));
+      currentPair = 1;
+    }
 
-    if (i == KEY_END)
+    if (i == 27) // 27 = esc
       break;
   }
+
+  (void)currentPair;
 
   endwin(); // disable curses, clear screen
 }
