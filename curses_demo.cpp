@@ -1,3 +1,12 @@
-#include <iostream>
+#include <ncurses.h>
 
-int main(int, char **) { std::cout << "hw\n"; }
+int main(int, char **) {
+
+  initscr(); // initialize screen
+
+  // code goes here
+  printw("Hello World !!!");
+  refresh();
+  getch();
+  endwin(); // disable curses, clear screen
+}
